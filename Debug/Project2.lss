@@ -1,0 +1,1567 @@
+
+Project2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000008c6  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  0000093a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000009  00800060  00800060  0000093a  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000093a  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000096c  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000001b8  00000000  00000000  000009a8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000237f  00000000  00000000  00000b60  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000ae6  00000000  00000000  00002edf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000f7b  00000000  00000000  000039c5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000368  00000000  00000000  00004940  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000005e1  00000000  00000000  00004ca8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000011b2  00000000  00000000  00005289  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000138  00000000  00000000  0000643b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 21 01 	jmp	0x242	; 0x242 <__vector_1>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a9 36       	cpi	r26, 0x69	; 105
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 e8 01 	call	0x3d0	; 0x3d0 <main>
+  74:	0c 94 61 04 	jmp	0x8c2	; 0x8c2 <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <APP_INIT>:
+void CASE_RED()// case red
+{
+	//led green pedstrains on and red car for 5 seconds
+	LED_ON(LEDG_P,PORT_B);
+	LED_ON(LEDR_C,PORT_A);
+	DELAY(5000);
+  7c:	61 e4       	ldi	r22, 0x41	; 65
+  7e:	82 e0       	ldi	r24, 0x02	; 2
+  80:	0e 94 9f 01 	call	0x33e	; 0x33e <LED_INIT>
+  84:	61 e4       	ldi	r22, 0x41	; 65
+  86:	81 e0       	ldi	r24, 0x01	; 1
+  88:	0e 94 9f 01 	call	0x33e	; 0x33e <LED_INIT>
+  8c:	61 e4       	ldi	r22, 0x41	; 65
+  8e:	80 e0       	ldi	r24, 0x00	; 0
+  90:	0e 94 9f 01 	call	0x33e	; 0x33e <LED_INIT>
+  94:	62 e4       	ldi	r22, 0x42	; 66
+  96:	82 e0       	ldi	r24, 0x02	; 2
+  98:	0e 94 9f 01 	call	0x33e	; 0x33e <LED_INIT>
+  9c:	62 e4       	ldi	r22, 0x42	; 66
+  9e:	81 e0       	ldi	r24, 0x01	; 1
+  a0:	0e 94 9f 01 	call	0x33e	; 0x33e <LED_INIT>
+  a4:	62 e4       	ldi	r22, 0x42	; 66
+  a6:	80 e0       	ldi	r24, 0x00	; 0
+  a8:	0e 94 9f 01 	call	0x33e	; 0x33e <LED_INIT>
+  ac:	40 e0       	ldi	r20, 0x00	; 0
+  ae:	64 e4       	ldi	r22, 0x44	; 68
+  b0:	82 e0       	ldi	r24, 0x02	; 2
+  b2:	0e 94 90 01 	call	0x320	; 0x320 <BUTTON_init>
+  b6:	86 e0       	ldi	r24, 0x06	; 6
+  b8:	0e 94 98 02 	call	0x530	; 0x530 <ENABLE_INTR>
+  bc:	63 e0       	ldi	r22, 0x03	; 3
+  be:	86 e0       	ldi	r24, 0x06	; 6
+  c0:	0e 94 9e 02 	call	0x53c	; 0x53c <INTRE_SENSE>
+  c4:	08 95       	ret
+
+000000c6 <NORMAL_STATE>:
+  c6:	0f 93       	push	r16
+  c8:	1f 93       	push	r17
+  ca:	62 e4       	ldi	r22, 0x42	; 66
+  cc:	81 e0       	ldi	r24, 0x01	; 1
+  ce:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+  d2:	62 e4       	ldi	r22, 0x42	; 66
+  d4:	82 e0       	ldi	r24, 0x02	; 2
+  d6:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+  da:	62 e4       	ldi	r22, 0x42	; 66
+  dc:	80 e0       	ldi	r24, 0x00	; 0
+  de:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+  e2:	61 e4       	ldi	r22, 0x41	; 65
+  e4:	82 e0       	ldi	r24, 0x02	; 2
+  e6:	0e 94 94 01 	call	0x328	; 0x328 <LED_ON>
+  ea:	62 e4       	ldi	r22, 0x42	; 66
+  ec:	80 e0       	ldi	r24, 0x00	; 0
+  ee:	0e 94 94 01 	call	0x328	; 0x328 <LED_ON>
+  f2:	88 e8       	ldi	r24, 0x88	; 136
+  f4:	93 e1       	ldi	r25, 0x13	; 19
+  f6:	0e 94 55 03 	call	0x6aa	; 0x6aa <DELAY>
+  fa:	61 e4       	ldi	r22, 0x41	; 65
+  fc:	82 e0       	ldi	r24, 0x02	; 2
+  fe:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+ 102:	62 e4       	ldi	r22, 0x42	; 66
+ 104:	80 e0       	ldi	r24, 0x00	; 0
+ 106:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+ 10a:	05 e0       	ldi	r16, 0x05	; 5
+ 10c:	10 e0       	ldi	r17, 0x00	; 0
+ 10e:	22 e4       	ldi	r18, 0x42	; 66
+ 110:	41 e0       	ldi	r20, 0x01	; 1
+ 112:	61 e4       	ldi	r22, 0x41	; 65
+ 114:	81 e0       	ldi	r24, 0x01	; 1
+ 116:	0e 94 c0 01 	call	0x380	; 0x380 <LED_BLINK2>
+ 11a:	61 e4       	ldi	r22, 0x41	; 65
+ 11c:	81 e0       	ldi	r24, 0x01	; 1
+ 11e:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+ 122:	62 e4       	ldi	r22, 0x42	; 66
+ 124:	81 e0       	ldi	r24, 0x01	; 1
+ 126:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+ 12a:	62 e4       	ldi	r22, 0x42	; 66
+ 12c:	82 e0       	ldi	r24, 0x02	; 2
+ 12e:	0e 94 94 01 	call	0x328	; 0x328 <LED_ON>
+ 132:	61 e4       	ldi	r22, 0x41	; 65
+ 134:	80 e0       	ldi	r24, 0x00	; 0
+ 136:	0e 94 94 01 	call	0x328	; 0x328 <LED_ON>
+ 13a:	88 e8       	ldi	r24, 0x88	; 136
+ 13c:	93 e1       	ldi	r25, 0x13	; 19
+ 13e:	0e 94 55 03 	call	0x6aa	; 0x6aa <DELAY>
+ 142:	61 e4       	ldi	r22, 0x41	; 65
+ 144:	80 e0       	ldi	r24, 0x00	; 0
+ 146:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+ 14a:	62 e4       	ldi	r22, 0x42	; 66
+ 14c:	82 e0       	ldi	r24, 0x02	; 2
+ 14e:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+ 152:	45 e0       	ldi	r20, 0x05	; 5
+ 154:	50 e0       	ldi	r21, 0x00	; 0
+ 156:	61 e4       	ldi	r22, 0x41	; 65
+ 158:	81 e0       	ldi	r24, 0x01	; 1
+ 15a:	0e 94 a3 01 	call	0x346	; 0x346 <LED_BLINK>
+ 15e:	61 e4       	ldi	r22, 0x41	; 65
+ 160:	81 e0       	ldi	r24, 0x01	; 1
+ 162:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+ 166:	1f 91       	pop	r17
+ 168:	0f 91       	pop	r16
+ 16a:	08 95       	ret
+
+0000016c <CASE_2>:
+}
+void CASE_2() // case 2 function
+{
+ 16c:	0f 93       	push	r16
+ 16e:	1f 93       	push	r17
+	// red pedestrians on
+	LED_ON(LEDR_P,PORT_B);
+ 170:	62 e4       	ldi	r22, 0x42	; 66
+ 172:	80 e0       	ldi	r24, 0x00	; 0
+ 174:	0e 94 94 01 	call	0x328	; 0x328 <LED_ON>
+	LED_BLINK2(LEDY_C,PORT_A,LEDY_P,PORT_B,5);// both starts to blink yellow led
+ 178:	05 e0       	ldi	r16, 0x05	; 5
+ 17a:	10 e0       	ldi	r17, 0x00	; 0
+ 17c:	22 e4       	ldi	r18, 0x42	; 66
+ 17e:	41 e0       	ldi	r20, 0x01	; 1
+ 180:	61 e4       	ldi	r22, 0x41	; 65
+ 182:	81 e0       	ldi	r24, 0x01	; 1
+ 184:	0e 94 c0 01 	call	0x380	; 0x380 <LED_BLINK2>
+	LED_OFF(LEDY_C,PORT_A);// yellow led off
+ 188:	61 e4       	ldi	r22, 0x41	; 65
+ 18a:	81 e0       	ldi	r24, 0x01	; 1
+ 18c:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+	LED_OFF(LEDY_P,PORT_B);
+ 190:	62 e4       	ldi	r22, 0x42	; 66
+ 192:	81 e0       	ldi	r24, 0x01	; 1
+ 194:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+	LED_OFF(LEDR_P,PORT_B);
+ 198:	62 e4       	ldi	r22, 0x42	; 66
+ 19a:	80 e0       	ldi	r24, 0x00	; 0
+ 19c:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+	LED_ON(LEDR_C,PORT_A);//red car led on
+ 1a0:	61 e4       	ldi	r22, 0x41	; 65
+ 1a2:	80 e0       	ldi	r24, 0x00	; 0
+ 1a4:	0e 94 94 01 	call	0x328	; 0x328 <LED_ON>
+	LED_ON(LEDG_P,PORT_B);//green pedestrians on
+ 1a8:	62 e4       	ldi	r22, 0x42	; 66
+ 1aa:	82 e0       	ldi	r24, 0x02	; 2
+ 1ac:	0e 94 94 01 	call	0x328	; 0x328 <LED_ON>
+	DELAY(5000);// all of that for 5 seconds
+ 1b0:	88 e8       	ldi	r24, 0x88	; 136
+ 1b2:	93 e1       	ldi	r25, 0x13	; 19
+ 1b4:	0e 94 55 03 	call	0x6aa	; 0x6aa <DELAY>
+}
+ 1b8:	1f 91       	pop	r17
+ 1ba:	0f 91       	pop	r16
+ 1bc:	08 95       	ret
+
+000001be <END_STATE>:
+void END_STATE()// end of state function
+{ 
+ 1be:	0f 93       	push	r16
+ 1c0:	1f 93       	push	r17
+	// red card and green pedestrains are off 
+	LED_OFF(LEDR_C,PORT_A);
+ 1c2:	61 e4       	ldi	r22, 0x41	; 65
+ 1c4:	80 e0       	ldi	r24, 0x00	; 0
+ 1c6:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+	LED_OFF(LEDG_P,PORT_B);
+ 1ca:	62 e4       	ldi	r22, 0x42	; 66
+ 1cc:	82 e0       	ldi	r24, 0x02	; 2
+ 1ce:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+	LED_BLINK2(LEDY_C,PORT_A,LEDY_P,PORT_B,5);// both starts to blink
+ 1d2:	05 e0       	ldi	r16, 0x05	; 5
+ 1d4:	10 e0       	ldi	r17, 0x00	; 0
+ 1d6:	22 e4       	ldi	r18, 0x42	; 66
+ 1d8:	41 e0       	ldi	r20, 0x01	; 1
+ 1da:	61 e4       	ldi	r22, 0x41	; 65
+ 1dc:	81 e0       	ldi	r24, 0x01	; 1
+ 1de:	0e 94 c0 01 	call	0x380	; 0x380 <LED_BLINK2>
+	// yellow leds off
+	LED_OFF(LEDY_C,PORT_A);
+ 1e2:	61 e4       	ldi	r22, 0x41	; 65
+ 1e4:	81 e0       	ldi	r24, 0x01	; 1
+ 1e6:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+	LED_OFF(LEDY_P,PORT_B);
+ 1ea:	62 e4       	ldi	r22, 0x42	; 66
+ 1ec:	81 e0       	ldi	r24, 0x01	; 1
+ 1ee:	0e 94 98 01 	call	0x330	; 0x330 <LED_OFF>
+	//after the end of the state
+	// green car and red pedestrains are on 
+	LED_ON(LEDG_C,PORT_A);
+ 1f2:	61 e4       	ldi	r22, 0x41	; 65
+ 1f4:	82 e0       	ldi	r24, 0x02	; 2
+ 1f6:	0e 94 94 01 	call	0x328	; 0x328 <LED_ON>
+	LED_ON(LEDR_P,PORT_B);
+ 1fa:	62 e4       	ldi	r22, 0x42	; 66
+ 1fc:	80 e0       	ldi	r24, 0x00	; 0
+ 1fe:	0e 94 94 01 	call	0x328	; 0x328 <LED_ON>
+	//DELAY(2000);// to see it on simulation 
+}
+ 202:	1f 91       	pop	r17
+ 204:	0f 91       	pop	r16
+ 206:	08 95       	ret
+
+00000208 <APP_START>:
+void APP_START() // flowchart
+{
+	while(1)
+	{
+			// which state to apply
+			switch(state)
+ 208:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <state>
+ 20c:	81 30       	cpi	r24, 0x01	; 1
+ 20e:	21 f0       	breq	.+8      	; 0x218 <APP_START+0x10>
+ 210:	a8 f0       	brcs	.+42     	; 0x23c <APP_START+0x34>
+ 212:	82 30       	cpi	r24, 0x02	; 2
+ 214:	41 f0       	breq	.+16     	; 0x226 <APP_START+0x1e>
+ 216:	f8 cf       	rjmp	.-16     	; 0x208 <APP_START>
+			{
+				case 1:// case red pedesterian 
+				{
+					
+					//red cars led is on and green pedesterian doing case 1
+					presscount=0;
+ 218:	10 92 65 00 	sts	0x0065, r1	; 0x800065 <presscount>
+					press=NOT_PRESSED;
+ 21c:	10 92 68 00 	sts	0x0068, r1	; 0x800068 <press>
+					NORMAL_STATE();
+ 220:	0e 94 63 00 	call	0xc6	; 0xc6 <NORMAL_STATE>
+					//END_STATE();
+					// back to normal
+					 
+					//state=normal;
+					// state is done so clear flag
+					break;
+ 224:	f1 cf       	rjmp	.-30     	; 0x208 <APP_START>
+				}
+				case 2:// case 2 gerren or yellow pedesterian 
+				{
+
+					//pederstrian red on case 2
+					press=NOT_PRESSED;//  (to change the button from press to non-press)
+ 226:	10 92 68 00 	sts	0x0068, r1	; 0x800068 <press>
+					CASE_2();
+ 22a:	0e 94 b6 00 	call	0x16c	; 0x16c <CASE_2>
+					// back to normal
+					END_STATE();
+ 22e:	0e 94 df 00 	call	0x1be	; 0x1be <END_STATE>
+					
+					presscount=0;// state is done so clear flag
+ 232:	10 92 65 00 	sts	0x0065, r1	; 0x800065 <presscount>
+					state=normal;
+ 236:	10 92 63 00 	sts	0x0063, r1	; 0x800063 <state>
+					
+					break;
+ 23a:	e6 cf       	rjmp	.-52     	; 0x208 <APP_START>
+				}
+				case 0:
+				{
+					//no_overflow=0;// reset nomber of overflows
+					//normal mode
+					NORMAL_STATE();
+ 23c:	0e 94 63 00 	call	0xc6	; 0xc6 <NORMAL_STATE>
+					
+					//presscount=0;// state is done so clear flag
+					break;
+ 240:	e3 cf       	rjmp	.-58     	; 0x208 <APP_START>
+
+00000242 <__vector_1>:
+	}
+	
+}
+
+ISR(EXT_INT_0)
+{
+ 242:	1f 92       	push	r1
+ 244:	0f 92       	push	r0
+ 246:	0f b6       	in	r0, 0x3f	; 63
+ 248:	0f 92       	push	r0
+ 24a:	11 24       	eor	r1, r1
+ 24c:	2f 93       	push	r18
+ 24e:	3f 93       	push	r19
+ 250:	4f 93       	push	r20
+ 252:	5f 93       	push	r21
+ 254:	6f 93       	push	r22
+ 256:	7f 93       	push	r23
+ 258:	8f 93       	push	r24
+ 25a:	9f 93       	push	r25
+ 25c:	af 93       	push	r26
+ 25e:	bf 93       	push	r27
+ 260:	ef 93       	push	r30
+ 262:	ff 93       	push	r31
+	
+	press=PRESS;
+ 264:	81 e0       	ldi	r24, 0x01	; 1
+ 266:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <press>
+	//PEDESTRIAN MODE button is pressed
+	if(press==PRESS &&presscount==1)
+ 26a:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <presscount>
+ 26e:	81 30       	cpi	r24, 0x01	; 1
+ 270:	19 f4       	brne	.+6      	; 0x278 <__vector_1+0x36>
+	{
+		presscount++;// reset press flag
+ 272:	8f 5f       	subi	r24, 0xFF	; 255
+ 274:	80 93 65 00 	sts	0x0065, r24	; 0x800065 <presscount>
+	}
+	 if(presscount<1)
+ 278:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <presscount>
+ 27c:	81 11       	cpse	r24, r1
+ 27e:	3d c0       	rjmp	.+122    	; 0x2fa <__vector_1+0xb8>
+	{
+		
+		// read each led pin 
+		READ_PIN(LEDR_C,PORTA,&stateRC);
+ 280:	42 e6       	ldi	r20, 0x62	; 98
+ 282:	50 e0       	ldi	r21, 0x00	; 0
+ 284:	6b e3       	ldi	r22, 0x3B	; 59
+ 286:	70 e0       	ldi	r23, 0x00	; 0
+ 288:	0e 94 d3 03 	call	0x7a6	; 0x7a6 <READ_PIN>
+		READ_PIN(LEDG_C,PORTA,&stateGC);
+ 28c:	47 e6       	ldi	r20, 0x67	; 103
+ 28e:	50 e0       	ldi	r21, 0x00	; 0
+ 290:	6b e3       	ldi	r22, 0x3B	; 59
+ 292:	70 e0       	ldi	r23, 0x00	; 0
+ 294:	82 e0       	ldi	r24, 0x02	; 2
+ 296:	0e 94 d3 03 	call	0x7a6	; 0x7a6 <READ_PIN>
+		READ_PIN(LEDY_C,PORTA,&stateYC);
+ 29a:	46 e6       	ldi	r20, 0x66	; 102
+ 29c:	50 e0       	ldi	r21, 0x00	; 0
+ 29e:	6b e3       	ldi	r22, 0x3B	; 59
+ 2a0:	70 e0       	ldi	r23, 0x00	; 0
+ 2a2:	81 e0       	ldi	r24, 0x01	; 1
+ 2a4:	0e 94 d3 03 	call	0x7a6	; 0x7a6 <READ_PIN>
+		if(stateGC==HIGH || stateYC==HIGH)
+ 2a8:	80 91 67 00 	lds	r24, 0x0067	; 0x800067 <stateGC>
+ 2ac:	81 30       	cpi	r24, 0x01	; 1
+ 2ae:	21 f0       	breq	.+8      	; 0x2b8 <__vector_1+0x76>
+ 2b0:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <stateYC>
+ 2b4:	81 30       	cpi	r24, 0x01	; 1
+ 2b6:	41 f4       	brne	.+16     	; 0x2c8 <__vector_1+0x86>
+		{
+			state=Case2;// case 2 if green and yellow car led are on 
+ 2b8:	82 e0       	ldi	r24, 0x02	; 2
+ 2ba:	80 93 63 00 	sts	0x0063, r24	; 0x800063 <state>
+			presscount++;// count touch flag high 
+ 2be:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <presscount>
+ 2c2:	8f 5f       	subi	r24, 0xFF	; 255
+ 2c4:	80 93 65 00 	sts	0x0065, r24	; 0x800065 <presscount>
+			 
+		}
+		if(flag_blink==1)
+ 2c8:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <flag_blink>
+ 2cc:	81 30       	cpi	r24, 0x01	; 1
+ 2ce:	49 f4       	brne	.+18     	; 0x2e2 <__vector_1+0xa0>
+		{
+			state=Case2;
+ 2d0:	82 e0       	ldi	r24, 0x02	; 2
+ 2d2:	80 93 63 00 	sts	0x0063, r24	; 0x800063 <state>
+			presscount++;
+ 2d6:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <presscount>
+ 2da:	8f 5f       	subi	r24, 0xFF	; 255
+ 2dc:	80 93 65 00 	sts	0x0065, r24	; 0x800065 <presscount>
+ 2e0:	0e c0       	rjmp	.+28     	; 0x2fe <__vector_1+0xbc>
+		}
+		else if(stateRC==HIGH)
+ 2e2:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <stateRC>
+ 2e6:	81 30       	cpi	r24, 0x01	; 1
+ 2e8:	51 f4       	brne	.+20     	; 0x2fe <__vector_1+0xbc>
+		{
+			
+			state=CaseRED;// case 1 if red led is on 
+ 2ea:	80 93 63 00 	sts	0x0063, r24	; 0x800063 <state>
+					presscount+=2;// count touch flag high 
+ 2ee:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <presscount>
+ 2f2:	8e 5f       	subi	r24, 0xFE	; 254
+ 2f4:	80 93 65 00 	sts	0x0065, r24	; 0x800065 <presscount>
+ 2f8:	02 c0       	rjmp	.+4      	; 0x2fe <__vector_1+0xbc>
+		}
+	}
+	else
+	{
+		presscount=0;// reset press flag
+ 2fa:	10 92 65 00 	sts	0x0065, r1	; 0x800065 <presscount>
+	}
+
+} 
+ 2fe:	ff 91       	pop	r31
+ 300:	ef 91       	pop	r30
+ 302:	bf 91       	pop	r27
+ 304:	af 91       	pop	r26
+ 306:	9f 91       	pop	r25
+ 308:	8f 91       	pop	r24
+ 30a:	7f 91       	pop	r23
+ 30c:	6f 91       	pop	r22
+ 30e:	5f 91       	pop	r21
+ 310:	4f 91       	pop	r20
+ 312:	3f 91       	pop	r19
+ 314:	2f 91       	pop	r18
+ 316:	0f 90       	pop	r0
+ 318:	0f be       	out	0x3f, r0	; 63
+ 31a:	0f 90       	pop	r0
+ 31c:	1f 90       	pop	r1
+ 31e:	18 95       	reti
+
+00000320 <BUTTON_init>:
+
+#include "button.h"
+
+void BUTTON_init(uint8_t pinNumber,uint8_t PortNumber,uint8_t Direction)
+{
+	DIO_init(pinNumber,PortNumber,INPUT);// initialize pin as input
+ 320:	40 e0       	ldi	r20, 0x00	; 0
+ 322:	0e 94 ef 01 	call	0x3de	; 0x3de <DIO_init>
+ 326:	08 95       	ret
+
+00000328 <LED_ON>:
+ */ 
+#include "led.h"
+
+void LED_ON(uint8_t pinNumber,uint8_t PortNumber)
+{
+	DIO_write(pinNumber, PortNumber, HIGH);////Led initializing pin to be high
+ 328:	41 e0       	ldi	r20, 0x01	; 1
+ 32a:	0e 94 32 02 	call	0x464	; 0x464 <DIO_write>
+ 32e:	08 95       	ret
+
+00000330 <LED_OFF>:
+}
+void LED_OFF(uint8_t pinNumber,uint8_t PortNumber)
+{
+	DIO_write(pinNumber, PortNumber,LOW);////Led initializing pin to be LOW
+ 330:	40 e0       	ldi	r20, 0x00	; 0
+ 332:	0e 94 32 02 	call	0x464	; 0x464 <DIO_write>
+ 336:	08 95       	ret
+
+00000338 <LED_TOGGLE>:
+}
+void LED_TOGGLE(uint8_t pinNumber,uint8_t PortNumber)
+{
+	DIO_toggle(pinNumber,PortNumber);////Led initializing pin to act as a toggle
+ 338:	0e 94 75 02 	call	0x4ea	; 0x4ea <DIO_toggle>
+ 33c:	08 95       	ret
+
+0000033e <LED_INIT>:
+}
+void LED_INIT(uint8_t pinNumber,uint8_t PortNumber)
+{
+	DIO_init( pinNumber, PortNumber,OUTPUT);////Led initializing pin to be output
+ 33e:	41 e0       	ldi	r20, 0x01	; 1
+ 340:	0e 94 ef 01 	call	0x3de	; 0x3de <DIO_init>
+ 344:	08 95       	ret
+
+00000346 <LED_BLINK>:
+}
+void LED_BLINK(uint8_t pinNumber,uint8_t PortNumber,uint32_t times) //times in seconds 
+{
+ 346:	0f 93       	push	r16
+ 348:	1f 93       	push	r17
+ 34a:	cf 93       	push	r28
+ 34c:	df 93       	push	r29
+ 34e:	08 2f       	mov	r16, r24
+ 350:	16 2f       	mov	r17, r22
+ 352:	ea 01       	movw	r28, r20
+	while(times>0)// time loop
+ 354:	0c c0       	rjmp	.+24     	; 0x36e <LED_BLINK+0x28>
+	{
+		flag_blink=1;
+ 356:	81 e0       	ldi	r24, 0x01	; 1
+ 358:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <flag_blink>
+		LED_TOGGLE(pinNumber,PortNumber);// toggle led 
+ 35c:	61 2f       	mov	r22, r17
+ 35e:	80 2f       	mov	r24, r16
+ 360:	0e 94 9c 01 	call	0x338	; 0x338 <LED_TOGGLE>
+		//no_overflow=0;// reset nomber of overflows
+	DELAY(1000);//in milliseconds blink every seconds 5 times means 500 milliseconds
+ 364:	88 ee       	ldi	r24, 0xE8	; 232
+ 366:	93 e0       	ldi	r25, 0x03	; 3
+ 368:	0e 94 55 03 	call	0x6aa	; 0x6aa <DELAY>
+	times--; // times is seconds 
+ 36c:	21 97       	sbiw	r28, 0x01	; 1
+{
+	DIO_init( pinNumber, PortNumber,OUTPUT);////Led initializing pin to be output
+}
+void LED_BLINK(uint8_t pinNumber,uint8_t PortNumber,uint32_t times) //times in seconds 
+{
+	while(times>0)// time loop
+ 36e:	20 97       	sbiw	r28, 0x00	; 0
+ 370:	91 f7       	brne	.-28     	; 0x356 <LED_BLINK+0x10>
+		LED_TOGGLE(pinNumber,PortNumber);// toggle led 
+		//no_overflow=0;// reset nomber of overflows
+	DELAY(1000);//in milliseconds blink every seconds 5 times means 500 milliseconds
+	times--; // times is seconds 
+	}
+	flag_blink=0;
+ 372:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <flag_blink>
+}
+ 376:	df 91       	pop	r29
+ 378:	cf 91       	pop	r28
+ 37a:	1f 91       	pop	r17
+ 37c:	0f 91       	pop	r16
+ 37e:	08 95       	ret
+
+00000380 <LED_BLINK2>:
+// blink function for two leds same steps as above add  other led
+void LED_BLINK2(uint8_t pinNumber,uint8_t PortNumber,uint8_t pinNumber2,uint8_t PortNumber2,uint32_t times)
+{
+ 380:	ef 92       	push	r14
+ 382:	ff 92       	push	r15
+ 384:	0f 93       	push	r16
+ 386:	1f 93       	push	r17
+ 388:	cf 93       	push	r28
+ 38a:	df 93       	push	r29
+ 38c:	e8 2e       	mov	r14, r24
+ 38e:	f6 2e       	mov	r15, r22
+ 390:	d4 2f       	mov	r29, r20
+ 392:	c2 2f       	mov	r28, r18
+	while(times>0)
+ 394:	11 c0       	rjmp	.+34     	; 0x3b8 <LED_BLINK2+0x38>
+	{
+		flag_blink=1;
+ 396:	81 e0       	ldi	r24, 0x01	; 1
+ 398:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <flag_blink>
+		LED_TOGGLE(pinNumber,PortNumber);// toggling both leds 
+ 39c:	6f 2d       	mov	r22, r15
+ 39e:	8e 2d       	mov	r24, r14
+ 3a0:	0e 94 9c 01 	call	0x338	; 0x338 <LED_TOGGLE>
+		LED_TOGGLE(pinNumber2,PortNumber2);
+ 3a4:	6c 2f       	mov	r22, r28
+ 3a6:	8d 2f       	mov	r24, r29
+ 3a8:	0e 94 9c 01 	call	0x338	; 0x338 <LED_TOGGLE>
+		DELAY(1000);//in milliseconds blink every seconds 5 times means 500 milliseconds
+ 3ac:	88 ee       	ldi	r24, 0xE8	; 232
+ 3ae:	93 e0       	ldi	r25, 0x03	; 3
+ 3b0:	0e 94 55 03 	call	0x6aa	; 0x6aa <DELAY>
+		times--; // times is seconds
+ 3b4:	01 50       	subi	r16, 0x01	; 1
+ 3b6:	11 09       	sbc	r17, r1
+	flag_blink=0;
+}
+// blink function for two leds same steps as above add  other led
+void LED_BLINK2(uint8_t pinNumber,uint8_t PortNumber,uint8_t pinNumber2,uint8_t PortNumber2,uint32_t times)
+{
+	while(times>0)
+ 3b8:	01 15       	cp	r16, r1
+ 3ba:	11 05       	cpc	r17, r1
+ 3bc:	61 f7       	brne	.-40     	; 0x396 <LED_BLINK2+0x16>
+		LED_TOGGLE(pinNumber,PortNumber);// toggling both leds 
+		LED_TOGGLE(pinNumber2,PortNumber2);
+		DELAY(1000);//in milliseconds blink every seconds 5 times means 500 milliseconds
+		times--; // times is seconds
+	}
+	flag_blink=0;
+ 3be:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <flag_blink>
+ 3c2:	df 91       	pop	r29
+ 3c4:	cf 91       	pop	r28
+ 3c6:	1f 91       	pop	r17
+ 3c8:	0f 91       	pop	r16
+ 3ca:	ff 90       	pop	r15
+ 3cc:	ef 90       	pop	r14
+ 3ce:	08 95       	ret
+
+000003d0 <main>:
+//#include <avr/io.h>
+#include "Appliction/app.h"
+int main(void)
+{
+	// aplication initializing 
+	APP_INIT();
+ 3d0:	0e 94 3e 00 	call	0x7c	; 0x7c <APP_INIT>
+    // app start
+	APP_START();
+ 3d4:	0e 94 04 01 	call	0x208	; 0x208 <APP_START>
+		
+		
+		
+				
+
+}
+ 3d8:	80 e0       	ldi	r24, 0x00	; 0
+ 3da:	90 e0       	ldi	r25, 0x00	; 0
+ 3dc:	08 95       	ret
+
+000003de <DIO_init>:
+		READ_PIN(pinNumber,PINC,value);// read the value on the pin
+		break;
+	}
+	case 'D':
+	{
+		READ_PIN(pinNumber,PIND,value);// read the value on the pin
+ 3de:	62 34       	cpi	r22, 0x42	; 66
+ 3e0:	b9 f0       	breq	.+46     	; 0x410 <__EEPROM_REGION_LENGTH__+0x10>
+ 3e2:	18 f4       	brcc	.+6      	; 0x3ea <DIO_init+0xc>
+ 3e4:	61 34       	cpi	r22, 0x41	; 65
+ 3e6:	31 f0       	breq	.+12     	; 0x3f4 <DIO_init+0x16>
+ 3e8:	08 95       	ret
+ 3ea:	63 34       	cpi	r22, 0x43	; 67
+ 3ec:	f9 f0       	breq	.+62     	; 0x42c <__EEPROM_REGION_LENGTH__+0x2c>
+ 3ee:	64 34       	cpi	r22, 0x44	; 68
+ 3f0:	59 f1       	breq	.+86     	; 0x448 <__EEPROM_REGION_LENGTH__+0x48>
+ 3f2:	08 95       	ret
+ 3f4:	41 30       	cpi	r20, 0x01	; 1
+ 3f6:	29 f4       	brne	.+10     	; 0x402 <__EEPROM_REGION_LENGTH__+0x2>
+ 3f8:	6a e3       	ldi	r22, 0x3A	; 58
+ 3fa:	70 e0       	ldi	r23, 0x00	; 0
+ 3fc:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+ 400:	08 95       	ret
+ 402:	41 11       	cpse	r20, r1
+ 404:	2e c0       	rjmp	.+92     	; 0x462 <__EEPROM_REGION_LENGTH__+0x62>
+ 406:	6a e3       	ldi	r22, 0x3A	; 58
+ 408:	70 e0       	ldi	r23, 0x00	; 0
+ 40a:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+ 40e:	08 95       	ret
+ 410:	41 30       	cpi	r20, 0x01	; 1
+ 412:	29 f4       	brne	.+10     	; 0x41e <__EEPROM_REGION_LENGTH__+0x1e>
+ 414:	67 e3       	ldi	r22, 0x37	; 55
+ 416:	70 e0       	ldi	r23, 0x00	; 0
+ 418:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+ 41c:	08 95       	ret
+ 41e:	41 11       	cpse	r20, r1
+ 420:	20 c0       	rjmp	.+64     	; 0x462 <__EEPROM_REGION_LENGTH__+0x62>
+ 422:	67 e3       	ldi	r22, 0x37	; 55
+ 424:	70 e0       	ldi	r23, 0x00	; 0
+ 426:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+ 42a:	08 95       	ret
+ 42c:	41 30       	cpi	r20, 0x01	; 1
+ 42e:	29 f4       	brne	.+10     	; 0x43a <__EEPROM_REGION_LENGTH__+0x3a>
+ 430:	64 e3       	ldi	r22, 0x34	; 52
+ 432:	70 e0       	ldi	r23, 0x00	; 0
+ 434:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+ 438:	08 95       	ret
+ 43a:	41 11       	cpse	r20, r1
+ 43c:	12 c0       	rjmp	.+36     	; 0x462 <__EEPROM_REGION_LENGTH__+0x62>
+ 43e:	64 e3       	ldi	r22, 0x34	; 52
+ 440:	70 e0       	ldi	r23, 0x00	; 0
+ 442:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+ 446:	08 95       	ret
+ 448:	41 30       	cpi	r20, 0x01	; 1
+ 44a:	29 f4       	brne	.+10     	; 0x456 <__EEPROM_REGION_LENGTH__+0x56>
+ 44c:	61 e3       	ldi	r22, 0x31	; 49
+ 44e:	70 e0       	ldi	r23, 0x00	; 0
+ 450:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+ 454:	08 95       	ret
+ 456:	41 11       	cpse	r20, r1
+ 458:	04 c0       	rjmp	.+8      	; 0x462 <__EEPROM_REGION_LENGTH__+0x62>
+ 45a:	61 e3       	ldi	r22, 0x31	; 49
+ 45c:	70 e0       	ldi	r23, 0x00	; 0
+ 45e:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+ 462:	08 95       	ret
+
+00000464 <DIO_write>:
+	}
+}
+}
+void DIO_write(uint8_t pinNumber,uint8_t PortNumber,uint8_t State) 
+{
+switch(PortNumber)// which port
+ 464:	62 34       	cpi	r22, 0x42	; 66
+ 466:	b9 f0       	breq	.+46     	; 0x496 <DIO_write+0x32>
+ 468:	18 f4       	brcc	.+6      	; 0x470 <DIO_write+0xc>
+ 46a:	61 34       	cpi	r22, 0x41	; 65
+ 46c:	31 f0       	breq	.+12     	; 0x47a <DIO_write+0x16>
+ 46e:	08 95       	ret
+ 470:	63 34       	cpi	r22, 0x43	; 67
+ 472:	f9 f0       	breq	.+62     	; 0x4b2 <DIO_write+0x4e>
+ 474:	64 34       	cpi	r22, 0x44	; 68
+ 476:	59 f1       	breq	.+86     	; 0x4ce <DIO_write+0x6a>
+ 478:	08 95       	ret
+	{
+	case 'A':
+	{
+		if(State==HIGH)//if it is set to be output set pin to 1
+ 47a:	41 30       	cpi	r20, 0x01	; 1
+ 47c:	29 f4       	brne	.+10     	; 0x488 <DIO_write+0x24>
+		{
+			
+			SET_PIN(pinNumber,PORTA);
+ 47e:	6b e3       	ldi	r22, 0x3B	; 59
+ 480:	70 e0       	ldi	r23, 0x00	; 0
+ 482:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+ 486:	08 95       	ret
+		}
+		else if(State==LOW)
+ 488:	41 11       	cpse	r20, r1
+ 48a:	2e c0       	rjmp	.+92     	; 0x4e8 <DIO_write+0x84>
+		{
+			CLEAR_PIN(pinNumber,PORTA);//if it is set to be output set pin to 0
+ 48c:	6b e3       	ldi	r22, 0x3B	; 59
+ 48e:	70 e0       	ldi	r23, 0x00	; 0
+ 490:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+ 494:	08 95       	ret
+		}
+	break;
+	}
+	case 'B':
+	{
+		if(State==HIGH)//if it is set to be output set pin to 1
+ 496:	41 30       	cpi	r20, 0x01	; 1
+ 498:	29 f4       	brne	.+10     	; 0x4a4 <DIO_write+0x40>
+		{
+			SET_PIN(pinNumber,PORTB);
+ 49a:	68 e3       	ldi	r22, 0x38	; 56
+ 49c:	70 e0       	ldi	r23, 0x00	; 0
+ 49e:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+ 4a2:	08 95       	ret
+		}
+		else if(State==LOW)
+ 4a4:	41 11       	cpse	r20, r1
+ 4a6:	20 c0       	rjmp	.+64     	; 0x4e8 <DIO_write+0x84>
+		{
+			CLEAR_PIN(pinNumber,PORTB);//if it is set to be output set pin to 0
+ 4a8:	68 e3       	ldi	r22, 0x38	; 56
+ 4aa:	70 e0       	ldi	r23, 0x00	; 0
+ 4ac:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+ 4b0:	08 95       	ret
+		}
+		break;
+	}
+	case 'C':
+	{
+		if(State==HIGH)//if it is set to be output set pin to 1
+ 4b2:	41 30       	cpi	r20, 0x01	; 1
+ 4b4:	29 f4       	brne	.+10     	; 0x4c0 <DIO_write+0x5c>
+		{
+			SET_PIN(pinNumber,PORTC);
+ 4b6:	65 e3       	ldi	r22, 0x35	; 53
+ 4b8:	70 e0       	ldi	r23, 0x00	; 0
+ 4ba:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+ 4be:	08 95       	ret
+		}
+		else if(State==LOW)
+ 4c0:	41 11       	cpse	r20, r1
+ 4c2:	12 c0       	rjmp	.+36     	; 0x4e8 <DIO_write+0x84>
+		{
+			CLEAR_PIN(pinNumber,PORTC);//if it is set to be output set pin to 0
+ 4c4:	65 e3       	ldi	r22, 0x35	; 53
+ 4c6:	70 e0       	ldi	r23, 0x00	; 0
+ 4c8:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+ 4cc:	08 95       	ret
+		}
+		break;
+	}
+	case 'D':
+	{
+		if(State==HIGH)//if it is set to be output set pin to 1
+ 4ce:	41 30       	cpi	r20, 0x01	; 1
+ 4d0:	29 f4       	brne	.+10     	; 0x4dc <DIO_write+0x78>
+		{
+			SET_PIN(pinNumber,PORTD);
+ 4d2:	62 e3       	ldi	r22, 0x32	; 50
+ 4d4:	70 e0       	ldi	r23, 0x00	; 0
+ 4d6:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+ 4da:	08 95       	ret
+		}
+		else if(State==LOW)
+ 4dc:	41 11       	cpse	r20, r1
+ 4de:	04 c0       	rjmp	.+8      	; 0x4e8 <DIO_write+0x84>
+		{
+			CLEAR_PIN(pinNumber,PORTD);//if it is set to be output set pin to 0
+ 4e0:	62 e3       	ldi	r22, 0x32	; 50
+ 4e2:	70 e0       	ldi	r23, 0x00	; 0
+ 4e4:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+ 4e8:	08 95       	ret
+
+000004ea <DIO_toggle>:
+	}
+}
+}
+void DIO_toggle(uint8_t pinNumber,uint8_t PortNumber)	//to toggle if 1 be zero and otherwise
+{
+switch(PortNumber)// which port
+ 4ea:	62 34       	cpi	r22, 0x42	; 66
+ 4ec:	79 f0       	breq	.+30     	; 0x50c <DIO_toggle+0x22>
+ 4ee:	18 f4       	brcc	.+6      	; 0x4f6 <DIO_toggle+0xc>
+ 4f0:	61 34       	cpi	r22, 0x41	; 65
+ 4f2:	31 f0       	breq	.+12     	; 0x500 <DIO_toggle+0x16>
+ 4f4:	08 95       	ret
+ 4f6:	63 34       	cpi	r22, 0x43	; 67
+ 4f8:	79 f0       	breq	.+30     	; 0x518 <DIO_toggle+0x2e>
+ 4fa:	64 34       	cpi	r22, 0x44	; 68
+ 4fc:	99 f0       	breq	.+38     	; 0x524 <DIO_toggle+0x3a>
+ 4fe:	08 95       	ret
+{
+	case 'A':
+	{
+		TOGGLE_PIN(pinNumber,PINA,'A');// toggle pin if 1 be 0 and otherwise
+ 500:	41 e4       	ldi	r20, 0x41	; 65
+ 502:	69 e3       	ldi	r22, 0x39	; 57
+ 504:	70 e0       	ldi	r23, 0x00	; 0
+ 506:	0e 94 eb 03 	call	0x7d6	; 0x7d6 <TOGGLE_PIN>
+		break;
+ 50a:	08 95       	ret
+	}
+	case 'B':
+	{
+		TOGGLE_PIN(pinNumber,PINB,'B');// toggle pin if 1 be 0 and otherwise
+ 50c:	42 e4       	ldi	r20, 0x42	; 66
+ 50e:	66 e3       	ldi	r22, 0x36	; 54
+ 510:	70 e0       	ldi	r23, 0x00	; 0
+ 512:	0e 94 eb 03 	call	0x7d6	; 0x7d6 <TOGGLE_PIN>
+		break;
+ 516:	08 95       	ret
+	}
+	case 'C':
+	{
+		TOGGLE_PIN(pinNumber,PINC,'C');// toggle pin if 1 be 0 and otherwise
+ 518:	43 e4       	ldi	r20, 0x43	; 67
+ 51a:	63 e3       	ldi	r22, 0x33	; 51
+ 51c:	70 e0       	ldi	r23, 0x00	; 0
+ 51e:	0e 94 eb 03 	call	0x7d6	; 0x7d6 <TOGGLE_PIN>
+		break;
+ 522:	08 95       	ret
+	}
+	case 'D':
+	{
+		TOGGLE_PIN(pinNumber,PIND,'D');// toggle pin if 1 be 0 and otherwise
+ 524:	44 e4       	ldi	r20, 0x44	; 68
+ 526:	60 e3       	ldi	r22, 0x30	; 48
+ 528:	70 e0       	ldi	r23, 0x00	; 0
+ 52a:	0e 94 eb 03 	call	0x7d6	; 0x7d6 <TOGGLE_PIN>
+ 52e:	08 95       	ret
+
+00000530 <ENABLE_INTR>:
+
+#include "intre.h"
+
+void ENABLE_INTR(uint8_t PinNumber)
+{
+	SET_PIN(PinNumber,GICR);// setting pin to 1
+ 530:	6b e5       	ldi	r22, 0x5B	; 91
+ 532:	70 e0       	ldi	r23, 0x00	; 0
+ 534:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+	sei();// enable serial register interrupt 
+ 538:	78 94       	sei
+ 53a:	08 95       	ret
+
+0000053c <INTRE_SENSE>:
+
+	
+
+void INTRE_SENSE(uint8_t PinNumber,uint8_t control)
+{
+	switch(PinNumber)// which pin 
+ 53c:	86 30       	cpi	r24, 0x06	; 6
+ 53e:	19 f0       	breq	.+6      	; 0x546 <INTRE_SENSE+0xa>
+ 540:	87 30       	cpi	r24, 0x07	; 7
+ 542:	a9 f1       	breq	.+106    	; 0x5ae <INTRE_SENSE+0x72>
+ 544:	08 95       	ret
+	{
+		case 6://INT0
+		{
+				switch(control)//which type
+ 546:	61 30       	cpi	r22, 0x01	; 1
+ 548:	89 f0       	breq	.+34     	; 0x56c <INTRE_SENSE+0x30>
+ 54a:	28 f0       	brcs	.+10     	; 0x556 <INTRE_SENSE+0x1a>
+ 54c:	62 30       	cpi	r22, 0x02	; 2
+ 54e:	c9 f0       	breq	.+50     	; 0x582 <INTRE_SENSE+0x46>
+ 550:	63 30       	cpi	r22, 0x03	; 3
+ 552:	11 f1       	breq	.+68     	; 0x598 <INTRE_SENSE+0x5c>
+ 554:	08 95       	ret
+			{
+				case 0:
+				{
+					CLEAR_PIN(0,MCUCR);//low level
+ 556:	65 e5       	ldi	r22, 0x55	; 85
+ 558:	70 e0       	ldi	r23, 0x00	; 0
+ 55a:	80 e0       	ldi	r24, 0x00	; 0
+ 55c:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+					CLEAR_PIN(1,MCUCR);
+ 560:	65 e5       	ldi	r22, 0x55	; 85
+ 562:	70 e0       	ldi	r23, 0x00	; 0
+ 564:	81 e0       	ldi	r24, 0x01	; 1
+ 566:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+					break;
+ 56a:	08 95       	ret
+				}
+				case 1:
+				{
+					SET_PIN(0,MCUCR);//logical
+ 56c:	65 e5       	ldi	r22, 0x55	; 85
+ 56e:	70 e0       	ldi	r23, 0x00	; 0
+ 570:	80 e0       	ldi	r24, 0x00	; 0
+ 572:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+					CLEAR_PIN(1,MCUCR);
+ 576:	65 e5       	ldi	r22, 0x55	; 85
+ 578:	70 e0       	ldi	r23, 0x00	; 0
+ 57a:	81 e0       	ldi	r24, 0x01	; 1
+ 57c:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+					break;
+ 580:	08 95       	ret
+				}
+				case 2:// falling edge 
+				{
+					SET_PIN(1,MCUCR);
+ 582:	65 e5       	ldi	r22, 0x55	; 85
+ 584:	70 e0       	ldi	r23, 0x00	; 0
+ 586:	81 e0       	ldi	r24, 0x01	; 1
+ 588:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+					CLEAR_PIN(0,MCUCR);
+ 58c:	65 e5       	ldi	r22, 0x55	; 85
+ 58e:	70 e0       	ldi	r23, 0x00	; 0
+ 590:	80 e0       	ldi	r24, 0x00	; 0
+ 592:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+					break;
+ 596:	08 95       	ret
+				}
+				case 3:// rising edge
+				{
+					SET_PIN(1,MCUCR);
+ 598:	65 e5       	ldi	r22, 0x55	; 85
+ 59a:	70 e0       	ldi	r23, 0x00	; 0
+ 59c:	81 e0       	ldi	r24, 0x01	; 1
+ 59e:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+					SET_PIN(0,MCUCR);
+ 5a2:	65 e5       	ldi	r22, 0x55	; 85
+ 5a4:	70 e0       	ldi	r23, 0x00	; 0
+ 5a6:	80 e0       	ldi	r24, 0x00	; 0
+ 5a8:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+					break;
+ 5ac:	08 95       	ret
+			}
+			break;
+		}
+		case 7://INT1
+		{
+				switch(control)//whcih type 
+ 5ae:	61 30       	cpi	r22, 0x01	; 1
+ 5b0:	89 f0       	breq	.+34     	; 0x5d4 <INTRE_SENSE+0x98>
+ 5b2:	28 f0       	brcs	.+10     	; 0x5be <INTRE_SENSE+0x82>
+ 5b4:	62 30       	cpi	r22, 0x02	; 2
+ 5b6:	c9 f0       	breq	.+50     	; 0x5ea <INTRE_SENSE+0xae>
+ 5b8:	63 30       	cpi	r22, 0x03	; 3
+ 5ba:	11 f1       	breq	.+68     	; 0x600 <INTRE_SENSE+0xc4>
+ 5bc:	08 95       	ret
+				{
+					case 0:
+					{
+						CLEAR_PIN(2,MCUCR);//low level
+ 5be:	65 e5       	ldi	r22, 0x55	; 85
+ 5c0:	70 e0       	ldi	r23, 0x00	; 0
+ 5c2:	82 e0       	ldi	r24, 0x02	; 2
+ 5c4:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+						CLEAR_PIN(3,MCUCR);
+ 5c8:	65 e5       	ldi	r22, 0x55	; 85
+ 5ca:	70 e0       	ldi	r23, 0x00	; 0
+ 5cc:	83 e0       	ldi	r24, 0x03	; 3
+ 5ce:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+						break;
+ 5d2:	08 95       	ret
+					}
+					case 1:
+					{
+						SET_PIN(2,MCUCR);//logical
+ 5d4:	65 e5       	ldi	r22, 0x55	; 85
+ 5d6:	70 e0       	ldi	r23, 0x00	; 0
+ 5d8:	82 e0       	ldi	r24, 0x02	; 2
+ 5da:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+						CLEAR_PIN(3,MCUCR);
+ 5de:	65 e5       	ldi	r22, 0x55	; 85
+ 5e0:	70 e0       	ldi	r23, 0x00	; 0
+ 5e2:	83 e0       	ldi	r24, 0x03	; 3
+ 5e4:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+						break;
+ 5e8:	08 95       	ret
+					}
+					case 2:// falling edge 
+					{
+						SET_PIN(3,MCUCR);
+ 5ea:	65 e5       	ldi	r22, 0x55	; 85
+ 5ec:	70 e0       	ldi	r23, 0x00	; 0
+ 5ee:	83 e0       	ldi	r24, 0x03	; 3
+ 5f0:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+						CLEAR_PIN(2,MCUCR);
+ 5f4:	65 e5       	ldi	r22, 0x55	; 85
+ 5f6:	70 e0       	ldi	r23, 0x00	; 0
+ 5f8:	82 e0       	ldi	r24, 0x02	; 2
+ 5fa:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+						break;
+ 5fe:	08 95       	ret
+					}
+					case 3:// rising edge
+					{
+						SET_PIN(3,MCUCR);
+ 600:	65 e5       	ldi	r22, 0x55	; 85
+ 602:	70 e0       	ldi	r23, 0x00	; 0
+ 604:	83 e0       	ldi	r24, 0x03	; 3
+ 606:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+						SET_PIN(2,MCUCR);
+ 60a:	65 e5       	ldi	r22, 0x55	; 85
+ 60c:	70 e0       	ldi	r23, 0x00	; 0
+ 60e:	82 e0       	ldi	r24, 0x02	; 2
+ 610:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+ 614:	08 95       	ret
+
+00000616 <SET_TIME>:
+
+
+
+void SET_TIME(uint32_t seconds) // set initial value
+{
+	*TCNT0=INITIAL_TIME(seconds);// setting counter register
+ 616:	69 2f       	mov	r22, r25
+ 618:	70 e0       	ldi	r23, 0x00	; 0
+ 61a:	6f 5f       	subi	r22, 0xFF	; 255
+ 61c:	7f 4f       	sbci	r23, 0xFF	; 255
+ 61e:	0e 94 4d 04 	call	0x89a	; 0x89a <__udivmodhi4>
+ 622:	61 95       	neg	r22
+ 624:	62 bf       	out	0x32, r22	; 50
+ 626:	08 95       	ret
+
+00000628 <START_TIME>:
+	//*TTCR0=0x00; // starting time timer mode normal 
+}
+void START_TIME(uint32_t prescaler)
+{
+	switch(prescaler)// prescaler
+ 628:	88 30       	cpi	r24, 0x08	; 8
+ 62a:	91 05       	cpc	r25, r1
+ 62c:	d1 f0       	breq	.+52     	; 0x662 <START_TIME+0x3a>
+ 62e:	28 f4       	brcc	.+10     	; 0x63a <START_TIME+0x12>
+ 630:	00 97       	sbiw	r24, 0x00	; 0
+ 632:	79 f0       	breq	.+30     	; 0x652 <START_TIME+0x2a>
+ 634:	01 97       	sbiw	r24, 0x01	; 1
+ 636:	79 f0       	breq	.+30     	; 0x656 <START_TIME+0x2e>
+ 638:	08 95       	ret
+ 63a:	81 15       	cp	r24, r1
+ 63c:	21 e0       	ldi	r18, 0x01	; 1
+ 63e:	92 07       	cpc	r25, r18
+ 640:	09 f1       	breq	.+66     	; 0x684 <START_TIME+0x5c>
+ 642:	81 15       	cp	r24, r1
+ 644:	24 e0       	ldi	r18, 0x04	; 4
+ 646:	92 07       	cpc	r25, r18
+ 648:	19 f1       	breq	.+70     	; 0x690 <START_TIME+0x68>
+ 64a:	80 34       	cpi	r24, 0x40	; 64
+ 64c:	91 05       	cpc	r25, r1
+ 64e:	51 f5       	brne	.+84     	; 0x6a4 <START_TIME+0x7c>
+ 650:	0e c0       	rjmp	.+28     	; 0x66e <START_TIME+0x46>
+	{
+		case 0://no prescaler
+		{
+			*TTCR0=0x00;
+ 652:	13 be       	out	0x33, r1	; 51
+			break;
+ 654:	08 95       	ret
+		}
+		case 1:// prescaler 1
+		{
+			SET_PIN(0,TTCR0);
+ 656:	63 e5       	ldi	r22, 0x53	; 83
+ 658:	70 e0       	ldi	r23, 0x00	; 0
+ 65a:	80 e0       	ldi	r24, 0x00	; 0
+ 65c:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+			
+			break;
+ 660:	08 95       	ret
+		}
+		case 8:// prescaler 8
+		{
+			SET_PIN(1,TTCR0);	
+ 662:	63 e5       	ldi	r22, 0x53	; 83
+ 664:	70 e0       	ldi	r23, 0x00	; 0
+ 666:	81 e0       	ldi	r24, 0x01	; 1
+ 668:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+			break;
+ 66c:	08 95       	ret
+		}
+		case 64:// prescaler 64
+		{
+			SET_PIN(0,TTCR0);
+ 66e:	63 e5       	ldi	r22, 0x53	; 83
+ 670:	70 e0       	ldi	r23, 0x00	; 0
+ 672:	80 e0       	ldi	r24, 0x00	; 0
+ 674:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+			SET_PIN(1,TTCR0);
+ 678:	63 e5       	ldi	r22, 0x53	; 83
+ 67a:	70 e0       	ldi	r23, 0x00	; 0
+ 67c:	81 e0       	ldi	r24, 0x01	; 1
+ 67e:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+			break;
+ 682:	08 95       	ret
+		}
+		case 256:// prescaler 256
+		{
+			SET_PIN(0,TTCR0);
+ 684:	63 e5       	ldi	r22, 0x53	; 83
+ 686:	70 e0       	ldi	r23, 0x00	; 0
+ 688:	80 e0       	ldi	r24, 0x00	; 0
+ 68a:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+			break;
+ 68e:	08 95       	ret
+		}
+		case 1024:// prescaler 1024
+		{
+			SET_PIN(0,TTCR0);
+ 690:	63 e5       	ldi	r22, 0x53	; 83
+ 692:	70 e0       	ldi	r23, 0x00	; 0
+ 694:	80 e0       	ldi	r24, 0x00	; 0
+ 696:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+			SET_PIN(2,TTCR0);
+ 69a:	63 e5       	ldi	r22, 0x53	; 83
+ 69c:	70 e0       	ldi	r23, 0x00	; 0
+ 69e:	82 e0       	ldi	r24, 0x02	; 2
+ 6a0:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+ 6a4:	08 95       	ret
+
+000006a6 <STOP_TIMER>:
+		
+	}
+}
+void STOP_TIMER()
+{
+	*TTCR0=0x00;// stopping  time
+ 6a6:	13 be       	out	0x33, r1	; 51
+ 6a8:	08 95       	ret
+
+000006aa <DELAY>:
+}
+
+
+
+void DELAY(uint32_t seconds)//in miliseconds
+{
+ 6aa:	ff 92       	push	r15
+ 6ac:	0f 93       	push	r16
+ 6ae:	1f 93       	push	r17
+ 6b0:	cf 93       	push	r28
+ 6b2:	df 93       	push	r29
+ 6b4:	f9 2e       	mov	r15, r25
+	 // overflow counter
+	SET_TIME(seconds);// setting time with initial time
+ 6b6:	0e 94 0b 03 	call	0x616	; 0x616 <SET_TIME>
+	START_TIME(1); // start time
+ 6ba:	81 e0       	ldi	r24, 0x01	; 1
+ 6bc:	90 e0       	ldi	r25, 0x00	; 0
+ 6be:	0e 94 14 03 	call	0x628	; 0x628 <START_TIME>
+	if(press==PRESS && presscount==1)
+ 6c2:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <press>
+ 6c6:	81 30       	cpi	r24, 0x01	; 1
+ 6c8:	a9 f4       	brne	.+42     	; 0x6f4 <DELAY+0x4a>
+ 6ca:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <presscount>
+ 6ce:	81 30       	cpi	r24, 0x01	; 1
+ 6d0:	89 f4       	brne	.+34     	; 0x6f4 <DELAY+0x4a>
+	{
+		no_overflow=(1000)*(NumberOfOverflow(seconds));// making overflow equal to nmber of flows to break from normal mode
+ 6d2:	8f 2d       	mov	r24, r15
+ 6d4:	90 e0       	ldi	r25, 0x00	; 0
+ 6d6:	01 96       	adiw	r24, 0x01	; 1
+ 6d8:	48 ee       	ldi	r20, 0xE8	; 232
+ 6da:	53 e0       	ldi	r21, 0x03	; 3
+ 6dc:	84 9f       	mul	r24, r20
+ 6de:	90 01       	movw	r18, r0
+ 6e0:	85 9f       	mul	r24, r21
+ 6e2:	30 0d       	add	r19, r0
+ 6e4:	94 9f       	mul	r25, r20
+ 6e6:	30 0d       	add	r19, r0
+ 6e8:	11 24       	eor	r1, r1
+ 6ea:	30 93 61 00 	sts	0x0061, r19	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 6ee:	20 93 60 00 	sts	0x0060, r18	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 6f2:	22 c0       	rjmp	.+68     	; 0x738 <DELAY+0x8e>
+	}
+	else
+	{
+		no_overflow=0;
+ 6f4:	10 92 61 00 	sts	0x0061, r1	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 6f8:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 6fc:	1d c0       	rjmp	.+58     	; 0x738 <DELAY+0x8e>
+	}
+	while(no_overflow<(1000)*(NumberOfOverflow(seconds))) // macros to get tick and max delay
+	{
+		
+		while((*(TIFR) &(1<<0))==0);//wait for overflow flag
+ 6fe:	08 b6       	in	r0, 0x38	; 56
+ 700:	00 fe       	sbrs	r0, 0
+ 702:	fd cf       	rjmp	.-6      	; 0x6fe <DELAY+0x54>
+		SET_PIN(0,TIFR);  // clearing flag by software set pin to 1 datasheet
+ 704:	68 e5       	ldi	r22, 0x58	; 88
+ 706:	70 e0       	ldi	r23, 0x00	; 0
+ 708:	80 e0       	ldi	r24, 0x00	; 0
+ 70a:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+		no_overflow++;//count up
+ 70e:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 712:	90 91 61 00 	lds	r25, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 716:	01 96       	adiw	r24, 0x01	; 1
+ 718:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 71c:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+		if(press==PRESS && presscount==1)
+ 720:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <press>
+ 724:	81 30       	cpi	r24, 0x01	; 1
+ 726:	41 f4       	brne	.+16     	; 0x738 <DELAY+0x8e>
+ 728:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <presscount>
+ 72c:	81 30       	cpi	r24, 0x01	; 1
+ 72e:	21 f4       	brne	.+8      	; 0x738 <DELAY+0x8e>
+		{
+			no_overflow=(1000)*(NumberOfOverflow(seconds));// making overflow equal to nmber of flows to break from normal mode
+ 730:	10 93 61 00 	sts	0x0061, r17	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 734:	00 93 60 00 	sts	0x0060, r16	; 0x800060 <__DATA_REGION_ORIGIN__>
+	}
+	else
+	{
+		no_overflow=0;
+	}
+	while(no_overflow<(1000)*(NumberOfOverflow(seconds))) // macros to get tick and max delay
+ 738:	cf 2d       	mov	r28, r15
+ 73a:	80 e0       	ldi	r24, 0x00	; 0
+ 73c:	d8 2f       	mov	r29, r24
+ 73e:	9e 01       	movw	r18, r28
+ 740:	2f 5f       	subi	r18, 0xFF	; 255
+ 742:	3f 4f       	sbci	r19, 0xFF	; 255
+ 744:	88 ee       	ldi	r24, 0xE8	; 232
+ 746:	93 e0       	ldi	r25, 0x03	; 3
+ 748:	28 9f       	mul	r18, r24
+ 74a:	80 01       	movw	r16, r0
+ 74c:	29 9f       	mul	r18, r25
+ 74e:	10 0d       	add	r17, r0
+ 750:	38 9f       	mul	r19, r24
+ 752:	10 0d       	add	r17, r0
+ 754:	11 24       	eor	r1, r1
+ 756:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 75a:	90 91 61 00 	lds	r25, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
+ 75e:	80 17       	cp	r24, r16
+ 760:	91 07       	cpc	r25, r17
+ 762:	68 f2       	brcs	.-102    	; 0x6fe <DELAY+0x54>
+		}
+		
+	}
+	
+	//stop time
+	STOP_TIMER();
+ 764:	0e 94 53 03 	call	0x6a6	; 0x6a6 <STOP_TIMER>
+}
+ 768:	df 91       	pop	r29
+ 76a:	cf 91       	pop	r28
+ 76c:	1f 91       	pop	r17
+ 76e:	0f 91       	pop	r16
+ 770:	ff 90       	pop	r15
+ 772:	08 95       	ret
+
+00000774 <SET_PIN>:
+#include "bitmanipulation.h"
+
+
+void SET_PIN(uint8_t pinNumber,volatile uint8_t* PortNumber)//set pin to 1
+{
+	*PortNumber |=(1<<pinNumber);// dereferencing the register on a certain pin to 1 
+ 774:	fb 01       	movw	r30, r22
+ 776:	90 81       	ld	r25, Z
+ 778:	21 e0       	ldi	r18, 0x01	; 1
+ 77a:	30 e0       	ldi	r19, 0x00	; 0
+ 77c:	02 c0       	rjmp	.+4      	; 0x782 <SET_PIN+0xe>
+ 77e:	22 0f       	add	r18, r18
+ 780:	33 1f       	adc	r19, r19
+ 782:	8a 95       	dec	r24
+ 784:	e2 f7       	brpl	.-8      	; 0x77e <SET_PIN+0xa>
+ 786:	29 2b       	or	r18, r25
+ 788:	20 83       	st	Z, r18
+ 78a:	08 95       	ret
+
+0000078c <CLEAR_PIN>:
+	
+}
+void CLEAR_PIN(uint8_t pinNumber,volatile uint8_t* PortNumber)//set pin to 0{
+	{
+			*PortNumber &=~(1<<pinNumber);// dereferencing the register on a certain pin to 0
+ 78c:	fb 01       	movw	r30, r22
+ 78e:	90 81       	ld	r25, Z
+ 790:	21 e0       	ldi	r18, 0x01	; 1
+ 792:	30 e0       	ldi	r19, 0x00	; 0
+ 794:	02 c0       	rjmp	.+4      	; 0x79a <CLEAR_PIN+0xe>
+ 796:	22 0f       	add	r18, r18
+ 798:	33 1f       	adc	r19, r19
+ 79a:	8a 95       	dec	r24
+ 79c:	e2 f7       	brpl	.-8      	; 0x796 <CLEAR_PIN+0xa>
+ 79e:	20 95       	com	r18
+ 7a0:	29 23       	and	r18, r25
+ 7a2:	20 83       	st	Z, r18
+ 7a4:	08 95       	ret
+
+000007a6 <READ_PIN>:
+		
+	}
+void READ_PIN(uint8_t pinNumber,volatile uint8_t *PortNumber,uint8_t *value) //read pin value
+{
+		*value= (*PortNumber&(1<<pinNumber))>>pinNumber; //reading the pin dereferencing t
+ 7a6:	fb 01       	movw	r30, r22
+ 7a8:	90 81       	ld	r25, Z
+ 7aa:	21 e0       	ldi	r18, 0x01	; 1
+ 7ac:	30 e0       	ldi	r19, 0x00	; 0
+ 7ae:	b9 01       	movw	r22, r18
+ 7b0:	08 2e       	mov	r0, r24
+ 7b2:	02 c0       	rjmp	.+4      	; 0x7b8 <READ_PIN+0x12>
+ 7b4:	66 0f       	add	r22, r22
+ 7b6:	77 1f       	adc	r23, r23
+ 7b8:	0a 94       	dec	r0
+ 7ba:	e2 f7       	brpl	.-8      	; 0x7b4 <READ_PIN+0xe>
+ 7bc:	29 2f       	mov	r18, r25
+ 7be:	30 e0       	ldi	r19, 0x00	; 0
+ 7c0:	26 23       	and	r18, r22
+ 7c2:	37 23       	and	r19, r23
+ 7c4:	b9 01       	movw	r22, r18
+ 7c6:	02 c0       	rjmp	.+4      	; 0x7cc <READ_PIN+0x26>
+ 7c8:	75 95       	asr	r23
+ 7ca:	67 95       	ror	r22
+ 7cc:	8a 95       	dec	r24
+ 7ce:	e2 f7       	brpl	.-8      	; 0x7c8 <READ_PIN+0x22>
+ 7d0:	fa 01       	movw	r30, r20
+ 7d2:	60 83       	st	Z, r22
+ 7d4:	08 95       	ret
+
+000007d6 <TOGGLE_PIN>:
+}
+
+void TOGGLE_PIN(uint8_t pinNumber,volatile uint8_t* PortNumber,uint8_t PortName)
+{
+ 7d6:	0f 93       	push	r16
+ 7d8:	1f 93       	push	r17
+ 7da:	cf 93       	push	r28
+ 7dc:	df 93       	push	r29
+ 7de:	1f 92       	push	r1
+ 7e0:	cd b7       	in	r28, 0x3d	; 61
+ 7e2:	de b7       	in	r29, 0x3e	; 62
+ 7e4:	08 2f       	mov	r16, r24
+ 7e6:	14 2f       	mov	r17, r20
+	uint8_t value;// value to store the reading 
+	READ_PIN(pinNumber,PortNumber,&value);//read pin
+ 7e8:	ae 01       	movw	r20, r28
+ 7ea:	4f 5f       	subi	r20, 0xFF	; 255
+ 7ec:	5f 4f       	sbci	r21, 0xFF	; 255
+ 7ee:	0e 94 d3 03 	call	0x7a6	; 0x7a6 <READ_PIN>
+	
+	
+	switch(PortName)// which port
+ 7f2:	12 34       	cpi	r17, 0x42	; 66
+ 7f4:	d1 f0       	breq	.+52     	; 0x82a <__DATA_REGION_LENGTH__+0x2a>
+ 7f6:	18 f4       	brcc	.+6      	; 0x7fe <TOGGLE_PIN+0x28>
+ 7f8:	11 34       	cpi	r17, 0x41	; 65
+ 7fa:	31 f0       	breq	.+12     	; 0x808 <__DATA_REGION_LENGTH__+0x8>
+ 7fc:	48 c0       	rjmp	.+144    	; 0x88e <__stack+0x2f>
+ 7fe:	13 34       	cpi	r17, 0x43	; 67
+ 800:	29 f1       	breq	.+74     	; 0x84c <__DATA_REGION_LENGTH__+0x4c>
+ 802:	14 34       	cpi	r17, 0x44	; 68
+ 804:	a1 f1       	breq	.+104    	; 0x86e <__stack+0xf>
+ 806:	43 c0       	rjmp	.+134    	; 0x88e <__stack+0x2f>
+	{
+		case 'A':
+		{
+			if(value==HIGH)//if it is set to be high set pin to 1
+ 808:	89 81       	ldd	r24, Y+1	; 0x01
+ 80a:	81 30       	cpi	r24, 0x01	; 1
+ 80c:	31 f4       	brne	.+12     	; 0x81a <__DATA_REGION_LENGTH__+0x1a>
+			{
+				
+				CLEAR_PIN(pinNumber,PORTA);//clear
+ 80e:	6b e3       	ldi	r22, 0x3B	; 59
+ 810:	70 e0       	ldi	r23, 0x00	; 0
+ 812:	80 2f       	mov	r24, r16
+ 814:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+ 818:	3a c0       	rjmp	.+116    	; 0x88e <__stack+0x2f>
+			}
+			else if(value==LOW)//if it is set to be low set pin to 1
+ 81a:	81 11       	cpse	r24, r1
+ 81c:	38 c0       	rjmp	.+112    	; 0x88e <__stack+0x2f>
+			{
+				SET_PIN(pinNumber,PORTA);//set
+ 81e:	6b e3       	ldi	r22, 0x3B	; 59
+ 820:	70 e0       	ldi	r23, 0x00	; 0
+ 822:	80 2f       	mov	r24, r16
+ 824:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+ 828:	32 c0       	rjmp	.+100    	; 0x88e <__stack+0x2f>
+			}
+			break;
+		}
+		case 'B':
+		{
+			if(value==HIGH)//if it is set to be high set pin to 1
+ 82a:	89 81       	ldd	r24, Y+1	; 0x01
+ 82c:	81 30       	cpi	r24, 0x01	; 1
+ 82e:	31 f4       	brne	.+12     	; 0x83c <__DATA_REGION_LENGTH__+0x3c>
+			{
+				CLEAR_PIN(pinNumber,PORTB);//clear
+ 830:	68 e3       	ldi	r22, 0x38	; 56
+ 832:	70 e0       	ldi	r23, 0x00	; 0
+ 834:	80 2f       	mov	r24, r16
+ 836:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+ 83a:	29 c0       	rjmp	.+82     	; 0x88e <__stack+0x2f>
+			}
+			else if(value==LOW)//if it is set to be low set pin to 1
+ 83c:	81 11       	cpse	r24, r1
+ 83e:	27 c0       	rjmp	.+78     	; 0x88e <__stack+0x2f>
+			{
+				SET_PIN(pinNumber,PORTB);//set
+ 840:	68 e3       	ldi	r22, 0x38	; 56
+ 842:	70 e0       	ldi	r23, 0x00	; 0
+ 844:	80 2f       	mov	r24, r16
+ 846:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+ 84a:	21 c0       	rjmp	.+66     	; 0x88e <__stack+0x2f>
+			}
+			break;
+		}
+		case 'C':
+		{
+			if(value==HIGH)//if it is set to be high set pin to 1
+ 84c:	89 81       	ldd	r24, Y+1	; 0x01
+ 84e:	81 30       	cpi	r24, 0x01	; 1
+ 850:	31 f4       	brne	.+12     	; 0x85e <__DATA_REGION_LENGTH__+0x5e>
+			{
+				CLEAR_PIN(pinNumber,PORTC);//clear
+ 852:	65 e3       	ldi	r22, 0x35	; 53
+ 854:	70 e0       	ldi	r23, 0x00	; 0
+ 856:	80 2f       	mov	r24, r16
+ 858:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+ 85c:	18 c0       	rjmp	.+48     	; 0x88e <__stack+0x2f>
+			}
+			else if(value==LOW)//if it is set to be low set pin to 1
+ 85e:	81 11       	cpse	r24, r1
+ 860:	16 c0       	rjmp	.+44     	; 0x88e <__stack+0x2f>
+			{
+				SET_PIN(pinNumber,PORTC);//set
+ 862:	65 e3       	ldi	r22, 0x35	; 53
+ 864:	70 e0       	ldi	r23, 0x00	; 0
+ 866:	80 2f       	mov	r24, r16
+ 868:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+ 86c:	10 c0       	rjmp	.+32     	; 0x88e <__stack+0x2f>
+			}
+			break;
+		}
+		case 'D':
+		{
+			if(value==HIGH)//if it is set to be high set pin to 1
+ 86e:	89 81       	ldd	r24, Y+1	; 0x01
+ 870:	81 30       	cpi	r24, 0x01	; 1
+ 872:	31 f4       	brne	.+12     	; 0x880 <__stack+0x21>
+			{
+				CLEAR_PIN(pinNumber,PORTD);//clear
+ 874:	62 e3       	ldi	r22, 0x32	; 50
+ 876:	70 e0       	ldi	r23, 0x00	; 0
+ 878:	80 2f       	mov	r24, r16
+ 87a:	0e 94 c6 03 	call	0x78c	; 0x78c <CLEAR_PIN>
+ 87e:	07 c0       	rjmp	.+14     	; 0x88e <__stack+0x2f>
+			}
+			else if(value==LOW)//if it is set to be low set pin to 1
+ 880:	81 11       	cpse	r24, r1
+ 882:	05 c0       	rjmp	.+10     	; 0x88e <__stack+0x2f>
+			{
+				SET_PIN(pinNumber,PORTD);//set
+ 884:	62 e3       	ldi	r22, 0x32	; 50
+ 886:	70 e0       	ldi	r23, 0x00	; 0
+ 888:	80 2f       	mov	r24, r16
+ 88a:	0e 94 ba 03 	call	0x774	; 0x774 <SET_PIN>
+			}
+			break;
+		}
+	}
+ 88e:	0f 90       	pop	r0
+ 890:	df 91       	pop	r29
+ 892:	cf 91       	pop	r28
+ 894:	1f 91       	pop	r17
+ 896:	0f 91       	pop	r16
+ 898:	08 95       	ret
+
+0000089a <__udivmodhi4>:
+ 89a:	aa 1b       	sub	r26, r26
+ 89c:	bb 1b       	sub	r27, r27
+ 89e:	51 e1       	ldi	r21, 0x11	; 17
+ 8a0:	07 c0       	rjmp	.+14     	; 0x8b0 <__udivmodhi4_ep>
+
+000008a2 <__udivmodhi4_loop>:
+ 8a2:	aa 1f       	adc	r26, r26
+ 8a4:	bb 1f       	adc	r27, r27
+ 8a6:	a6 17       	cp	r26, r22
+ 8a8:	b7 07       	cpc	r27, r23
+ 8aa:	10 f0       	brcs	.+4      	; 0x8b0 <__udivmodhi4_ep>
+ 8ac:	a6 1b       	sub	r26, r22
+ 8ae:	b7 0b       	sbc	r27, r23
+
+000008b0 <__udivmodhi4_ep>:
+ 8b0:	88 1f       	adc	r24, r24
+ 8b2:	99 1f       	adc	r25, r25
+ 8b4:	5a 95       	dec	r21
+ 8b6:	a9 f7       	brne	.-22     	; 0x8a2 <__udivmodhi4_loop>
+ 8b8:	80 95       	com	r24
+ 8ba:	90 95       	com	r25
+ 8bc:	bc 01       	movw	r22, r24
+ 8be:	cd 01       	movw	r24, r26
+ 8c0:	08 95       	ret
+
+000008c2 <_exit>:
+ 8c2:	f8 94       	cli
+
+000008c4 <__stop_program>:
+ 8c4:	ff cf       	rjmp	.-2      	; 0x8c4 <__stop_program>
